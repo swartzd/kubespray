@@ -1,3 +1,5 @@
+This roughly tracks kubernetes-incubator/kubespray but has modifications that allow it to work on armv7l. A lot of it is hacky and will break other arch - this is TODO to clean up. Wanted to get it out here for backup and for others first!
+
 ![Kubernetes Logo](https://raw.githubusercontent.com/kubernetes-incubator/kubespray/master/docs/img/kubernetes-logo.png)
 
 Deploy a Production Ready Kubernetes Cluster
