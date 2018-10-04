@@ -9,7 +9,6 @@
 - name: Master | wait for master static pods
   command: /bin/true
   notify:
-    - Master | wait for the apiserver to be running
     - Master | wait for kube-scheduler
     - Master | wait for kube-controller-manager
 
@@ -17,7 +16,6 @@
   command: /bin/true
   notify:
     - Master | Remove apiserver container
-    - Master | wait for the apiserver to be running
 
 - name: Master | Restart kube-scheduler
   command: /bin/true

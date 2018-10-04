@@ -1,16 +1,4 @@
 ---
-- name: Kubernetes Apps | Wait for kube-apiserver
-  uri:
-    url: "{{ kube_apiserver_endpoint }}/healthz"
-    validate_certs: no
-    client_cert: "{{ kube_apiserver_client_cert }}"
-    client_key: "{{ kube_apiserver_client_key }}"
-  register: result
-  until: result.status == 200
-  retries: 10
-  delay: 2
-  when: inventory_hostname == groups['kube-master'][0]
-
 - name: Kubernetes Apps | Cleanup DNS
   import_tasks: tasks/cleanup_dns.yml
   when:

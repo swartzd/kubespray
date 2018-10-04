@@ -13,7 +13,7 @@
     status_code: "{{ vault_successful_http_codes | join(',') }}"
   register: vault_health_check
   until: vault_health_check|succeeded
-  retries: 10
+  retries: 50
   delay: "{{ retry_stagger | random + 3 }}"
   run_once: yes
   notify: set facts about local Vault health

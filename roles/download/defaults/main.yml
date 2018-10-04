@@ -32,12 +32,12 @@ download_validate_certs: True
 download_delegate: "{% if download_localhost %}localhost{% else %}{{groups['kube-master'][0]}}{% endif %}"
 
 # Arch of Docker images and needed packages
-image_arch: "{{host_architecture | default('amd64')}}"
+image_arch: "{{ 'arm' }}"
 
 # Versions
 kube_version: v1.11.3
 kubeadm_version: "{{ kube_version }}"
-etcd_version: v3.2.18
+etcd_version: 3.2.18
 
 # TODO(mattymo): Move calico versions to roles/network_plugins/calico/defaults
 # after migration to container download
@@ -59,12 +59,12 @@ cilium_version: "v1.2.0"
 # Download URLs
 kubeadm_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kubeadm_version }}/bin/linux/{{ image_arch }}/kubeadm"
 vault_download_url: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_{{ image_arch }}.zip"
-etcd_download_url: "https://github.com/coreos/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-amd64.tar.gz"
-hyperkube_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/amd64/hyperkube"
+etcd_download_url: "https://github.com/coreos/etcd/releases/download/{{ etcd_version }}/etcd-{{ etcd_version }}-linux-{{ image_arch }}.tar.gz"
+hyperkube_download_url: "https://storage.googleapis.com/kubernetes-release/release/{{ kube_version }}/bin/linux/{{ image_arch }}/hyperkube"
 
 # Checksums
 hyperkube_checksums:
-  v1.11.3: dac8da16dd6688e52b5dc510f5dd0a20b54350d52fb27ceba2f018ba2c8be692
+  v1.11.3: 15d47f86aed8c97770e1a5439e23afdf32a006086fbdf7a2b49806495ef941d7
   v1.11.2: d727f8cae3fc26b1add9b4ff0d4d9b99605544ff7fb3baeecdca394362adbfb8
   v1.11.1: 019ce1ecf4c6a70c06a7f4ef107443351458b4d9e6b9ce4a436bfbfbef93feea
   v1.11.0: 7e191c164dc2c942abd37e4b50846e0be31ca959afffeff6b034beacbc2a106a
@@ -78,7 +78,8 @@ hyperkube_checksums:
   v1.10.1: 6e0642ad6bae68dc81b8d1c9efa18e265e17e23da1895862823cafac08c0344c
   v1.10.0: b5575b2fb4266754c1675b8cd5d9b6cac70f3fee7a05c4e80da3a9e83e58c57e
 kubeadm_checksums:
-  v1.11.3: 422a7a32ed9a7b1eaa2a4f9d121674dfbe80eb41e206092c13017d097f75aaec
+#  v1.11.3: 422a7a32ed9a7b1eaa2a4f9d121674dfbe80eb41e206092c13017d097f75aaec
+  v1.11.3: e95a4923de422d73c2424fa3e7df25d9bfca95602d3e46eedb9d607365439177
   v1.11.2: 6b17720a65b8ff46efe92a5544f149c39a221910d89939838d75581d4e6924c0
   v1.11.1: 425ec24b95f7217ee06d1588aba22f206a5829f8c6a5352c2862368552361fe6
   v1.11.0: 0000478fc59a24ec1727de744188d13c4d702a644954132efa9d9954371b3553
@@ -105,11 +106,11 @@ kubeadm_binary_checksum: "{{ kubeadm_checksums[kubeadm_version] }}"
 # You need to deploy kubernetes cluster on local private development.
 # Also provide the address of your own private registry.
 # And use --insecure-registry options for docker
-etcd_image_repo: "quay.io/coreos/etcd"
-etcd_image_tag: "{{ etcd_version }}{%- if image_arch != 'amd64' -%}-{{ image_arch }}{%- endif -%}"
+etcd_image_repo: "gcr.io/google-containers/etcd-{{ image_arch }}"
+etcd_image_tag: "{{ etcd_version }}"
 flannel_image_repo: "quay.io/coreos/flannel"
-flannel_image_tag: "{{ flannel_version }}"
-flannel_cni_image_repo: "quay.io/coreos/flannel-cni"
+flannel_image_tag: "{{ flannel_version }}-{{ image_arch }}"
+flannel_cni_image_repo: "alphamaster/flannel-cni"
 flannel_cni_image_tag: "{{ flannel_cni_version }}"
 calicoctl_image_repo: "quay.io/calico/ctl"
 calicoctl_image_tag: "{{ calico_ctl_version }}"
@@ -148,8 +149,8 @@ contiv_ovs_image_repo: "contiv/ovs"
 contiv_ovs_image_tag: "latest"
 cilium_image_repo: "docker.io/cilium/cilium"
 cilium_image_tag: "{{ cilium_version }}"
-nginx_image_repo: nginx
-nginx_image_tag: 1.13
+nginx_image_repo: arm32v7/nginx
+nginx_image_tag: 1.14
 dnsmasq_version: 2.78
 dnsmasq_image_repo: "andyshinn/dnsmasq"
 dnsmasq_image_tag: "{{ dnsmasq_version }}"
@@ -172,12 +173,12 @@ dnsmasqautoscaler_image_tag: "{{ dnsmasqautoscaler_version }}"
 kubednsautoscaler_version: 1.2.0
 kubednsautoscaler_image_repo: "gcr.io/google_containers/cluster-proportional-autoscaler-{{ image_arch }}"
 kubednsautoscaler_image_tag: "{{ kubednsautoscaler_version }}"
-test_image_repo: busybox
+test_image_repo: armhf-busybox
 test_image_tag: latest
 helm_version: "v2.9.1"
-helm_image_repo: "lachlanevenson/k8s-helm"
+helm_image_repo: "alphamaster/k8s-helm"
 helm_image_tag: "{{ helm_version }}"
-tiller_image_repo: "gcr.io/kubernetes-helm/tiller"
+tiller_image_repo: "alphamaster/tiller"
 tiller_image_tag: "{{ helm_version }}"
 vault_image_repo: "vault"
 vault_image_tag: "{{ vault_version }}"
@@ -191,7 +192,7 @@ cephfs_provisioner_image_repo: "quay.io/external_storage/cephfs-provisioner"
 cephfs_provisioner_image_tag: "v2.1.0-k8s1.11"
 ingress_nginx_controller_image_repo: "quay.io/kubernetes-ingress-controller/nginx-ingress-controller"
 ingress_nginx_controller_image_tag: "0.19.0"
-ingress_nginx_default_backend_image_repo: "gcr.io/google_containers/defaultbackend"
+ingress_nginx_default_backend_image_repo: "gcr.io/google_containers/defaultbackend-{{ image_arch }}"
 ingress_nginx_default_backend_image_tag: "1.4"
 cert_manager_version: "v0.5.0"
 cert_manager_controller_image_repo: "quay.io/jetstack/cert-manager-controller"
