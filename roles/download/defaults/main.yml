@@ -64,7 +64,7 @@ hyperkube_download_url: "https://storage.googleapis.com/kubernetes-release/relea
 
 # Checksums
 hyperkube_checksums:
-  v1.12.0: f80336201f3152a5307c01f8a7206847398dde15c69b3d20c76a7d9520b60daf
+  v1.12.0: f061def3fedc3873447998f6a16ed012ba4800b693f4646baac2acb7cd919302
   v1.11.3: 15d47f86aed8c97770e1a5439e23afdf32a006086fbdf7a2b49806495ef941d7
   v1.11.2: d727f8cae3fc26b1add9b4ff0d4d9b99605544ff7fb3baeecdca394362adbfb8
   v1.11.1: 019ce1ecf4c6a70c06a7f4ef107443351458b4d9e6b9ce4a436bfbfbef93feea
