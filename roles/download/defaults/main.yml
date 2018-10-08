@@ -35,7 +35,7 @@ download_delegate: "{% if download_localhost %}localhost{% else %}{{groups['kube
 image_arch: "{{ 'arm' }}"
 
 # Versions
-kube_version: v1.12.0
+kube_version: v1.12.1
 kubeadm_version: "{{ kube_version }}"
 etcd_version: 3.2.24
 
@@ -64,6 +64,7 @@ hyperkube_download_url: "https://storage.googleapis.com/kubernetes-release/relea
 
 # Checksums
 hyperkube_checksums:
+  v1.12.1: 4aa23cfb2fc2e2e4d0cbe0d83a648c38e4baabd6c66f5cdbbb40cbc7582fdc74
   v1.12.0: f061def3fedc3873447998f6a16ed012ba4800b693f4646baac2acb7cd919302
   v1.11.3: 15d47f86aed8c97770e1a5439e23afdf32a006086fbdf7a2b49806495ef941d7
   v1.11.2: d727f8cae3fc26b1add9b4ff0d4d9b99605544ff7fb3baeecdca394362adbfb8
@@ -79,6 +80,7 @@ hyperkube_checksums:
   v1.10.1: 6e0642ad6bae68dc81b8d1c9efa18e265e17e23da1895862823cafac08c0344c
   v1.10.0: b5575b2fb4266754c1675b8cd5d9b6cac70f3fee7a05c4e80da3a9e83e58c57e
 kubeadm_checksums:
+  v1.12.1: 5d95efd65aad398d85a9802799f36410ae7a95f9cbe73c8b10d2213c10a6d7be
   v1.12.0: bdea48f21f9c55628f9449529bf0ebe9f1ad6712e0b55ad2506236b8203fc240
   v1.11.3: e95a4923de422d73c2424fa3e7df25d9bfca95602d3e46eedb9d607365439177
   v1.11.2: 6b17720a65b8ff46efe92a5544f149c39a221910d89939838d75581d4e6924c0
