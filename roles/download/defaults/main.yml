@@ -47,7 +47,7 @@ calico_cni_version: "v3.1.3"
 calico_policy_version: "v3.1.3"
 calico_rr_version: "v0.6.1"
 
-flannel_version: "v0.10.0"
+flannel_version: "v0.10.0-56-g0abaa4d7-dirty"
 flannel_cni_version: "v0.3.0"
 
 vault_version: 0.10.1
@@ -64,7 +64,7 @@ hyperkube_download_url: "https://storage.googleapis.com/kubernetes-release/relea
 
 # Checksums
 hyperkube_checksums:
-  v1.12.1: 4aa23cfb2fc2e2e4d0cbe0d83a648c38e4baabd6c66f5cdbbb40cbc7582fdc74
+  v1.12.1: 4cc7648c160c6dd57953034e137664072a5de902efc0104062618fbc6e26a304
   v1.12.0: f061def3fedc3873447998f6a16ed012ba4800b693f4646baac2acb7cd919302
   v1.11.3: 15d47f86aed8c97770e1a5439e23afdf32a006086fbdf7a2b49806495ef941d7
   v1.11.2: d727f8cae3fc26b1add9b4ff0d4d9b99605544ff7fb3baeecdca394362adbfb8
@@ -80,7 +80,7 @@ hyperkube_checksums:
   v1.10.1: 6e0642ad6bae68dc81b8d1c9efa18e265e17e23da1895862823cafac08c0344c
   v1.10.0: b5575b2fb4266754c1675b8cd5d9b6cac70f3fee7a05c4e80da3a9e83e58c57e
 kubeadm_checksums:
-  v1.12.1: 5d95efd65aad398d85a9802799f36410ae7a95f9cbe73c8b10d2213c10a6d7be
+  v1.12.1: f3c2148d957882fc032c4a3a11d77a8d1f6ab0e77e2532f1ee4f4fe9a599fc3d
   v1.12.0: bdea48f21f9c55628f9449529bf0ebe9f1ad6712e0b55ad2506236b8203fc240
   v1.11.3: e95a4923de422d73c2424fa3e7df25d9bfca95602d3e46eedb9d607365439177
   v1.11.2: 6b17720a65b8ff46efe92a5544f149c39a221910d89939838d75581d4e6924c0
@@ -111,7 +111,7 @@ kubeadm_binary_checksum: "{{ kubeadm_checksums[kubeadm_version] }}"
 # And use --insecure-registry options for docker
 etcd_image_repo: "gcr.io/google-containers/etcd-{{ image_arch }}"
 etcd_image_tag: "{{ etcd_version }}"
-flannel_image_repo: "quay.io/coreos/flannel"
+flannel_image_repo: "alphamaster/flannel"
 flannel_image_tag: "{{ flannel_version }}-{{ image_arch }}"
 flannel_cni_image_repo: "alphamaster/flannel-cni"
 flannel_cni_image_tag: "{{ flannel_cni_version }}"
